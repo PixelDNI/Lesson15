@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start page</title>
+</head>
+<body>
+    <h1> Uncompleted tasks</h1>
+
+    <a href="{% url 'create_new_task' %}">Add new task</a>
+
+    {% for task in u_tasks %}
+
+        <div style="
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;">
+            {{task}}
+        <h3>Completed: <a href="{% url 'change_status' task.id %}"><input type="checkbox"></a></h3>
+
+        <a href="{% url 'update_task' task.id %}">Edit</a>
+        <a href="{% url 'delete_task' task.id %}">Remove</a>
+        </div>
+
+    {% endfor %}
+
+    <div style="
+            width: 100%;
+            height: 2px;
+            background-color: red;
+">
+
+    </div>
+       <h1> Completed tasks</h1>
+    {% for task in c_tasks %}
+
+        <div
+        style="
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;">
+            {{task}}
+        <h3>Completed: <a href="{% url 'change_status' task.id %}"> <input type="checkbox" checked> </a></h3>
+
+        <a href="{% url 'update_task' task.id %}">Edit</a>
+        <a href="{% url 'delete_task' task.id %}">Remove</a>
+        </div>
+
+    {% endfor %}
+
+
+</body>
+</html>
